@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Weeb Kernel by @idkwhoiam322 based on RedFlare Kernel for the OnePlus 5/T by Maxim Tresk and @nathanchance
+kernel.string=Weeb Kernel by @idkwhoiam322 based on RedFlare Kernel for the OnePlus 5/T by Maxim Tresk
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
