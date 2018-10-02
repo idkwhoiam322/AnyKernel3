@@ -76,8 +76,8 @@ dump_boot;
 # Set the default background app limit to 60
 insert_line default.prop "ro.sys.fw.bg_apps_limit=60" before "ro.secure=1" "ro.sys.fw.bg_apps_limit=60";
 
-# Import init.redflare.rc file
-insert_line init.rc "init.redflare.rc" after "import /init.usb.rc" "import /init.redflare.rc";
+# Import init.weeb.rc file
+insert_line init.rc "init.weeb.rc" after "import /init.usb.rc" "import /init.weeb.rc";
 
 #Remove init.flash.rc
 rm init.flash.rc
@@ -98,8 +98,8 @@ if [ "$os" == "oos" ]; then
     "allow init { system_file vendor_file vendor_configs_file } file mounton" \
   ;
 
-  # Patch init.redflare.rc to bind mount the Wi-Fi module on OxygenOS
-  prepend_file init.redflare.rc "modules" modules;
+  # Patch init.weeb.rc to bind mount the Wi-Fi module on OxygenOS
+  prepend_file init.weeb.rc "modules" modules;
 
   # Remove recovery service so that TWRP isn't overwritten
   remove_section init.rc "service flash_recovery" ""
