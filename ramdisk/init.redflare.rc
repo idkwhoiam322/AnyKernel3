@@ -7,14 +7,14 @@ on init
 on late-fs
 # boot time fs tune
 	write /sys/block/sda/queue/iostats 0
-	write /sys/block/sda/queue/scheduler maple
+	write /sys/block/sda/queue/scheduler cfq
 	write /sys/block/sda/queue/iosched/slice_idle 0
-	write /sys/block/sda/queue/read_ahead_kb 1024
+	write /sys/block/sda/queue/read_ahead_kb 1536
 	write /sys/block/sda/queue/nr_requests 256
 	write /sys/block/sde/queue/iostats 0
-	write /sys/block/sde/queue/scheduler maple
+	write /sys/block/sde/queue/scheduler cfq
 	write /sys/block/sde/queue/iosched/slice_idle 0
-	write /sys/block/sde/queue/read_ahead_kb 1024
+	write /sys/block/sde/queue/read_ahead_kb 1536
 	write /sys/block/sde/queue/nr_requests 256 
 
 on boot
@@ -32,15 +32,15 @@ on boot
 
 on property:sys.post_boot.parsed=1
 # Adjust LMK Values
-#	write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,55296,80640"
-# Simple LMK enabled
+	write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,55296,80640"
+
 
 # Will only work if using EAS"
-	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
-	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
+	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 2000
+	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 2000
 	write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 0
-	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
-	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 2000
+	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 2000
 	write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 0
 
 # Enable input boost configuration
