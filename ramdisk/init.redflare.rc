@@ -1,4 +1,4 @@
-non init
+on init
 # set default schedTune value for foreground/top-app (only affects EAS)
 	write /dev/stune/foreground/schedtune.prefer_idle 1
 	write /dev/stune/top-app/schedtune.prefer_idle 1
