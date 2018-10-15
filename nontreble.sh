@@ -71,8 +71,13 @@ insert_line default.prop "ro.sys.fw.bg_apps_limit=60" before "ro.secure=1" "ro.s
 # Import init.redflare.rc file
 insert_line init.rc "init.redflare.rc" after "import /init.usb.rc" "import /init.redflare.rc";
 
-#Remove init.flash.rc
+# Remove init.flash.rc
 rm init.flash.rc
+
+# Remove CAF Boost Framework cuz CAF is a hoe
+mount -o rw,remount -t auto /system >/dev/null;
+rm -rf /system/etc/perf;
+mount -o ro,remount -t auto /system >/dev/null;
 
 # If on OOS, we need the support to load the Wi-Fi module
 if [ "$os" == "oos" ]; then
