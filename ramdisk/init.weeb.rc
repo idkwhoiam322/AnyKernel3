@@ -66,9 +66,11 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 2361600
 
 # end boot time fs tune
+	write /sys/block/sda/queue/scheduler cfq
 	write /sys/block/sda/queue/read_ahead_kb 1024
 	write /sys/block/sda/queue/nr_requests 128
 	write /sys/block/sda/queue/iostats 1
+	write /sys/block/sda/queue/scheduler cfq
 	write /sys/block/sde/queue/read_ahead_kb 512
 	write /sys/block/sde/queue/nr_requests 128
 	write /sys/block/sde/queue/iostats 1 
