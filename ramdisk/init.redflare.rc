@@ -27,7 +27,7 @@ on boot
 # set default schedTune value for foreground/top-app (only affects EAS)
 	write /dev/stune/foreground/schedtune.prefer_idle 1
 	write /dev/stune/top-app/schedtune.prefer_idle 1
-	write /dev/stune/top-app/schedtune.boost 15
+	write /dev/stune/top-app/schedtune.boost 20
 	write /dev/stune/top-app/schedtune.sched_boost 0
 
 on property:sys.post_boot.parsed=1
@@ -48,7 +48,7 @@ on property:sys.post_boot.parsed=1
 
 # Enable input boost configuration
 	write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 10
-	write /sys/module/cpu_input_boost/parameters/input_boost_ms 100
+	write /sys/module/cpu_input_boost/parameters/input_boost_ms 64
 
 # update cpusets now that boot is complete and we want better load balancing
 	write /dev/cpuset/top-app/cpus 0-7
