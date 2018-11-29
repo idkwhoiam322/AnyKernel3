@@ -58,8 +58,9 @@ on property:sys.post_boot.parsed=1
 	write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
 
 # Enable input boost configuration
-	write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 20
-	write /sys/module/cpu_input_boost/parameters/input_boost_ms 500
+	write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
+	write /sys/module/cpu_boost/parameters/dynamic_stune_boost 20
+	write /sys/module/cpu_boost/parameters/input_boost_ms 500
 	write /dev/stune/top-app/schedtune.boost 1
 
 # update cpusets now that boot is complete and we want better load balancing
