@@ -32,6 +32,7 @@ on boot
 
 # bind custom system blobs
 	mount auto /perfboostsconfig.xml /vendor/etc/perf/perfboostsconfig.xml bind
+	mount auto /powerhint.xml /vendor/etc/powerhint.xml bind
 
 on property:sys.post_boot.parsed=1
 # Adjust LMK Values
