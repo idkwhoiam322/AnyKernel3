@@ -54,8 +54,8 @@ on property:sys.post_boot.parsed=1
 
 
 # Ensure minimum frequencies is 300MHz
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 518400
-	write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 806400
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
+	write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
 
 # Enable input boost configuration
 	write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 20
