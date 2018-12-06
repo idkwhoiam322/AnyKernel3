@@ -59,7 +59,7 @@ on property:sys.post_boot.parsed=1
 
 # Enable input boost configuration
 	write /sys/module/cpu_input_boost/parameters/dynamic_stune_boost 20
-	write /sys/module/cpu_input_boost/parameters/input_boost_ms 64
+	write /sys/module/cpu_input_boost/parameters/input_boost_ms 300
 	write /dev/stune/top-app/schedtune.boost 15
 	write /dev/stune/top-app/schedtune.sched_boost 10
 
