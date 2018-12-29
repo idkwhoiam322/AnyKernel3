@@ -15,7 +15,7 @@ sleep 25;
 
 # Input boost and stune configuration
 	echo "0:1094400 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-	echo 150 > /sys/module/cpu_boost/parameters/input_boost_ms
+	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
 	echo 0 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
 # Enable PEWQ
@@ -31,8 +31,7 @@ sleep 25;
 
 # Setup EAS cpusets values for better load balancing
 	echo 0-7 > /dev/cpuset/top-app/cpus
-
-# Since we are not using core rotator, lets load balance
+	echo 0-3,6-7 > /dev/cpuset/foreground/boost/cpus
 	echo 0-3,6-7 > /dev/cpuset/foreground/cpus
 	echo 0-1 > /dev/cpuset/background/cpus
 	echo 0-3  > /dev/cpuset/system-background/cpus
