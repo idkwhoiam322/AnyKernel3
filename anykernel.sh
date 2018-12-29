@@ -46,6 +46,7 @@ dump_boot;
 
 # begin ramdisk changes
 
+# we have to boot permissive because qcacld module won't load otherwise
 patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
 ui_print "-> Setting SELinux Permissive";
 
