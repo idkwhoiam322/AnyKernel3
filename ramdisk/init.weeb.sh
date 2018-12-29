@@ -18,6 +18,10 @@ sleep 25;
 	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
 	echo 0 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
+# Set min cpu freq
+	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+
 # Enable PEWQ
 	echo Y > /sys/module/workqueue/parameters/power_efficient
 
