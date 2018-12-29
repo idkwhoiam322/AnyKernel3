@@ -38,6 +38,7 @@ fi;
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
+chmod 644 $ramdisk/modules/*;
 chown -R root:root $ramdisk/*;
 
 
@@ -45,6 +46,8 @@ chown -R root:root $ramdisk/*;
 dump_boot;
 
 # begin ramdisk changes
+
+insert_line init.rc "init.qcom.rc" after "import /init.usb.rc" "import /init.qcom.rc";
 
 # we have to boot permissive because qcacld module won't load otherwise
 patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
@@ -58,17 +61,23 @@ else
   patch_cmdline "skip_override" "";
 fi;  
 
-# sepolicy
-$bin/magiskpolicy --load sepolicy --save sepolicy \
-    "allow init rootfs file execute_no_trans" \
-    "allow { init modprobe } rootfs system module_load" \
-    "allow init { system_file vendor_file vendor_configs_file } file mounton" \
-    "allow { msm_irqbalanced hal_perf_default } rootfs file { getattr read open } " \
-    ;
 
-cp /system_root/init.rc $ramdisk/overlay;
-remove_line $ramdisk/init.rc "import /init.qcom.rc";
-insert_line $ramdisk/init.rc "init.qcom.rc" after 'import /init.usb.rc' "import /init.qcom.rc";
+ # sepolicy
+ $bin/magiskpolicy --load sepolicy --save sepolicy \
+   "allow init rootfs file execute_no_trans" \
+   "allow { init modprobe } rootfs system module_load" \
+   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
+ ;
+
+  # sepolicy_debug
+ $bin/magiskpolicy --load sepolicy_debug --save sepolicy_debug \
+   "allow init rootfs file execute_no_trans" \
+   "allow { init modprobe } rootfs system module_load" \
+   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
+ ;
+
+# Patch init.qcom.rc to bind mount the Wi-Fi module
+ prepend_file init.qcom.rc "modules" modules;
 
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
