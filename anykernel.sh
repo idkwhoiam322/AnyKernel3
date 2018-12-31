@@ -49,10 +49,6 @@ dump_boot;
 
 insert_line init.rc "init.qcom.rc" after "import /init.usb.rc" "import /init.qcom.rc";
 
-# we have to boot permissive because qcacld module won't load otherwise
-patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
-ui_print "-> Setting SELinux Permissive";
-
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
 if [ -d $ramdisk/.backup ]; then
   ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
@@ -61,32 +57,8 @@ else
   patch_cmdline "skip_override" "";
 fi;  
 
-
- # sepolicy
- $bin/magiskpolicy --load sepolicy --save sepolicy \
-   "allow init rootfs file execute_no_trans" \
-   "allow { init modprobe } rootfs system module_load" \
-   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
- ;
-
-  # sepolicy_debug
- $bin/magiskpolicy --load sepolicy_debug --save sepolicy_debug \
-   "allow init rootfs file execute_no_trans" \
-   "allow { init modprobe } rootfs system module_load" \
-   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
- ;
-
-# Patch init.qcom.rc to bind mount the Wi-Fi module
- prepend_file init.qcom.rc "modules" modules;
-
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
-
-# Kill init's search for Treble split sepolicy if Magisk is not present
-# This will force init to load the monolithic sepolicy at /
-if [ ! -d .backup ]; then
-    sed -i 's;selinux/plat_sepolicy.cil;selinux/plat_sepolicy.xxx;g' init;
-fi;
 
 # end ramdisk changes
 
