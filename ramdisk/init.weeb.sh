@@ -67,3 +67,10 @@ sleep 25;
 
 # Disable USB Fast Charge by default
 	echo 0 > /sys/kernel/fast_charge/force_fast_charge
+
+# kcal config
+chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal
+chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_cont
+chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_hue
+chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_sat
+chmod 0664 /sys/devices/platform/kcal_ctrl.0/kcal_val
