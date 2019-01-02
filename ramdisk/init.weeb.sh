@@ -14,9 +14,9 @@ sleep 25;
 	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration
-	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 40 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+	echo "0:1036800 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+	echo 450 > /sys/module/cpu_boost/parameters/input_boost_ms
+	echo 0 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
 # Set min cpu freq
 	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -31,7 +31,7 @@ sleep 25;
 # Set default schedTune value for foreground/top-app
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
 	echo 1 > /dev/stune/top-app/schedtune.boost
-	echo 15 > /dev/stune/top-app/schedtune.sched_boost
+	echo 0 > /dev/stune/top-app/schedtune.sched_boost
 	echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
 # Setup EAS cpusets values for better load balancing
