@@ -41,6 +41,18 @@ chmod -R 750 $ramdisk/*;
 chmod 644 $ramdisk/modules/*;
 chown -R root:root $ramdisk/*;
 
+# Check if user is on OxygenOS or Cutom ROM
+userflavor="$(file_getprop /system/build.prop "ro.build.user"):$(file_getprop /system/build.prop "ro.build.flavor")";
+case "$userflavor" in
+  "OnePlus:OnePlus5-user"|"OnePlus:OnePlus5T-user")
+    os="oos";
+    os_string="OxygenOS";;
+  *)
+    os="custom";
+    os_string="a custom ROM";;
+esac;
+ui_print " ";
+ui_print "You are on $os_string!";
 
 ## AnyKernel install
 dump_boot;
@@ -49,9 +61,11 @@ dump_boot;
 
 insert_line init.rc "init.qcom.rc" after "import /init.usb.rc" "import /init.qcom.rc";
 
-# we have to boot permissive because qcacld module won't load otherwise
-patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
-ui_print "-> Setting SELinux Permissive";
+if [ "$os" == "oos" ]; then
+  # we have to boot permissive because qcacld module won't load otherwise
+  patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
+  ui_print "-> Setting SELinux Permissive";
+fi
 
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
 if [ -d $ramdisk/.backup ]; then
@@ -61,23 +75,24 @@ else
   patch_cmdline "skip_override" "";
 fi;  
 
+if [ "$os" == "oos" ]; then
+   # sepolicy
+   $bin/magiskpolicy --load sepolicy --save sepolicy \
+     "allow init rootfs file execute_no_trans" \
+     "allow { init modprobe } rootfs system module_load" \
+     "allow init { system_file vendor_file vendor_configs_file } file mounton" \
+   ;
 
- # sepolicy
- $bin/magiskpolicy --load sepolicy --save sepolicy \
-   "allow init rootfs file execute_no_trans" \
-   "allow { init modprobe } rootfs system module_load" \
-   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
- ;
+    # sepolicy_debug
+   $bin/magiskpolicy --load sepolicy_debug --save sepolicy_debug \
+     "allow init rootfs file execute_no_trans" \
+     "allow { init modprobe } rootfs system module_load" \
+     "allow init { system_file vendor_file vendor_configs_file } file mounton" \
+   ;
 
-  # sepolicy_debug
- $bin/magiskpolicy --load sepolicy_debug --save sepolicy_debug \
-   "allow init rootfs file execute_no_trans" \
-   "allow { init modprobe } rootfs system module_load" \
-   "allow init { system_file vendor_file vendor_configs_file } file mounton" \
- ;
-
-# Patch init.qcom.rc to bind mount the Wi-Fi module
- prepend_file init.qcom.rc "modules" modules;
+  # Patch init.qcom.rc to bind mount the Wi-Fi module
+   prepend_file init.qcom.rc "modules" modules;
+fi
 
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
