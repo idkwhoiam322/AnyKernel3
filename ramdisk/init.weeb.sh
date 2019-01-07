@@ -22,10 +22,6 @@ sleep 25;
 	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
 # Set max cpu freq
-
-	chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-	chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
-	
 	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1900800
 	write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
 
