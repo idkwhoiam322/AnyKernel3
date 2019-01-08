@@ -78,10 +78,6 @@ sleep 25;
 	echo 128 > /sys/block/sdf/queue/nr_requests
 	echo 1 > /sys/block/sdf/queue/iostats
 
-	echo 128 > /sys/block/dm-0/queue/read_ahead_kb
-	echo 128 > /sys/block/dm-0/queue/nr_requests
-	echo 1 > /sys/block/dm-0/queue/iostats
-
 # Adjust LMK Values
 	echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
 
