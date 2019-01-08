@@ -107,5 +107,7 @@ fi;
 
 write_boot;
 
+ui_print "Please DO NOT flash Magisk AFTER the kernel! Flash it BEFORE ONLY. Flashing it after will wipe the ramdisk changes! The kernel preserves Magisk already :)";
+
 ## end install
 
