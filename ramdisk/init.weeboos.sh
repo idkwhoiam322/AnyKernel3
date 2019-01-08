@@ -39,8 +39,8 @@ sleep 25;
 	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
 # Set max cpu freq
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1900800
-	write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1958400
+	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+	echo 1958400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
 # Enable PEWQ
 	echo Y > /sys/module/workqueue/parameters/power_efficient
