@@ -64,7 +64,7 @@ sleep 25;
 # For better screen off idle
 	echo 0-3 > /dev/cpuset/restricted/cpus
 
-# Adjust runtime fs
+# Adjust runtime fs to improve performance based on pixel settings. 2048 best for boot speed, 128 best for performance.
 	echo 128 > /sys/block/sda/queue/read_ahead_kb
 	echo 128 > /sys/block/sda/queue/nr_requests
 	echo 1 > /sys/block/sda/queue/iostats
