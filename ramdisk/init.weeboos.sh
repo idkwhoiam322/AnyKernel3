@@ -30,9 +30,9 @@ sleep 25;
 	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration
-	echo "0:1094400 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+	echo "0:1094400 1:0 2:0 3:0 4:979200 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+	echo 15 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
 # Set min cpu freq
 	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
