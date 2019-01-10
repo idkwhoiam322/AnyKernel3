@@ -61,12 +61,6 @@ dump_boot;
 
 insert_line init.rc "init.qcom.rc" after "import /init.usb.rc" "import /init.qcom.rc";
 
-if [ "$os" == "oos" ]; then
-  # we have to boot permissive because qcacld module won't load otherwise
-  patch_cmdline "androidboot.selinux=enforcing" "androidboot.selinux=permissive";
-  ui_print "-> Setting SELinux Permissive";
-fi
-
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
 if [ -d $ramdisk/.backup ]; then
   ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
