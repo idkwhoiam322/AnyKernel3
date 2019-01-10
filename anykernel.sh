@@ -6,9 +6,9 @@
 properties() { '
 kernel.string=WeebKernel by idkwhoiam322
 do.devicecheck=1
-do.modules=0
+do.modules=1
 do.cleanup=1
-do.cleanuponabort=0
+do.cleanuponabort=1
 device.name1=OnePlus5T
 device.name2=dumpling
 device.name3=OnePlus5
