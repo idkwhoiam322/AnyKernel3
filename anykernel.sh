@@ -61,6 +61,14 @@ dump_boot;
 
 insert_line init.rc "init.qcom.rc" after "import /init.usb.rc" "import /init.qcom.rc";
 
+# Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
+if [ -d $ramdisk/.backup ]; then
+  ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
+  patch_cmdline "skip_override" "skip_override";
+else
+  patch_cmdline "skip_override" "";
+fi;
+
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
 
