@@ -35,8 +35,8 @@ sleep 25;
 	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
 # Set min cpu freq
-	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
 # Set max cpu freq
 	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
