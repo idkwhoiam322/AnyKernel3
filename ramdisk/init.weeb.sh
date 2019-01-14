@@ -29,10 +29,10 @@ sleep 25;
 	echo 20000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
 	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
-# Input boost and stune configuration
-	echo "0:960000 1:0 2:0 3:0 4:979200 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+# Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
+#	echo "0:960000 1:0 2:0 3:0 4:979200 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+#	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
+#	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 
 # Set min cpu freq
 	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
