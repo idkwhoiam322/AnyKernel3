@@ -83,3 +83,6 @@ sleep 25;
 
 # Disable USB Fast Charge by default
 	echo 0 > /sys/kernel/fast_charge/force_fast_charge
+
+# Disable perfd
+	stop perf-hal-1-0
