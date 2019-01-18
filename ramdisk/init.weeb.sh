@@ -18,6 +18,14 @@ sleep 25;
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 
+# Set min cpu freq
+	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+
+# Set max cpu freq
+	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+	echo 2361600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+
 # Setup Schedutil Governor
 	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
@@ -33,14 +41,6 @@ sleep 25;
 #	echo "0:960000 1:0 2:0 3:0 4:979200 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 #	echo 600 > /sys/module/cpu_boost/parameters/input_boost_ms
 #	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
-
-# Set min cpu freq
-	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
-
-# Set max cpu freq
-	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	echo 2361600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
 # Enable PEWQ
 	echo Y > /sys/module/workqueue/parameters/power_efficient
