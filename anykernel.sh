@@ -38,7 +38,6 @@ fi;
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
-chmod 644 $ramdisk/modules/*;
 chown -R root:root $ramdisk/*;
 
 # Check if user is on OxygenOS or Cutom ROM
