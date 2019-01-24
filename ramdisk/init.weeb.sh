@@ -24,7 +24,7 @@ sleep 35;
 
 # Set max cpu freq
 	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	echo 1958400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+	echo 2361600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
 # Setup Schedutil Governor
 	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
