@@ -30,12 +30,12 @@ sleep 35;
 	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 	echo 20000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-	echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable
+	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable
 
 	echo "schedutil" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor	
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
 	echo 20000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
-	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
+	echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
 #	echo "0:960000 1:0 2:0 3:0 4:979200 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
