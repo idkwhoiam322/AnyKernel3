@@ -85,4 +85,4 @@ sleep 35;
 	echo 2 > /proc/sys/vm/dirty_background_ratio
 
 # Disable perfd
-	stop perf-hal-1-0
+#	stop perf-hal-1-0
