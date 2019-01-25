@@ -80,7 +80,7 @@ sleep 35;
 	echo 0 > /sys/kernel/fast_charge/force_fast_charge
 
 # Configure ZRAM
-	echo 65 > /proc/sys/vm/swappiness
+	echo 8 > /proc/sys/vm/swappiness
 	echo 5 > /proc/sys/vm/dirty_ratio
 	echo 2 > /proc/sys/vm/dirty_background_ratio
 
