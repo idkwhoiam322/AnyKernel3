@@ -19,8 +19,8 @@ sleep 35;
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 
 # Set min cpu freq
-	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+#	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+#	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
 # Set max cpu freq
 	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
@@ -38,10 +38,10 @@ sleep 35;
 	echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
-	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-	echo 1500 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
-	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
+#	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+#	echo 1500 > /sys/module/cpu_boost/parameters/input_boost_ms
+#	echo 20 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+#	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
 
 # Enable PEWQ
 	echo Y > /sys/module/workqueue/parameters/power_efficient
@@ -52,7 +52,7 @@ sleep 35;
 # Set default schedTune value for foreground/top-app
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
 	echo 0 > /dev/stune/top-app/schedtune.boost
-	echo 20 > /dev/stune/top-app/schedtune.sched_boost
+	echo 15 > /dev/stune/top-app/schedtune.sched_boost
 	echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
 # Setup EAS cpusets values for better load balancing
@@ -76,9 +76,6 @@ sleep 35;
 
 # Adjust LMK Values
 	echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
-
-# Disable USB Fast Charge by default
-	echo 0 > /sys/kernel/fast_charge/force_fast_charge
 
 # Configure ZRAM
 	echo 8 > /proc/sys/vm/swappiness
