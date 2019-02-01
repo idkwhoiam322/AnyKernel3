@@ -30,15 +30,15 @@ sleep 35;
 	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 	echo 20000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-	echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable
+	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable
 
 	echo "schedutil" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor	
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
 	echo 20000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
-	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
+	echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
-	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+	echo "0:1036800 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 500 > /sys/module/cpu_boost/parameters/input_boost_ms
 	echo 15 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
@@ -51,6 +51,7 @@ sleep 35;
 
 # Set default schedTune value for foreground/top-app
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
+# My reason for the top-app schedtune.boost being zero is that we do not really need any boosting when nothing significant is going on, for example, watching a youtube video, or the network indicator changing every second or so. For this reason, I have set it to 0, it does not seem to affect UX in my testing and should be just fine.
 	echo 0 > /dev/stune/top-app/schedtune.boost
 	echo 15 > /dev/stune/top-app/schedtune.sched_boost
 	echo 1 > /dev/stune/top-app/schedtune.prefer_idle
@@ -72,7 +73,7 @@ sleep 35;
 	echo 128 > /sys/block/sde/queue/nr_requests
 	echo 128 > /sys/block/sdf/queue/read_ahead_kb
 	echo 128 > /sys/block/sdf/queue/nr_requests
-    echo 128 > /sys/block/dm-0/queue/read_ahead_kb
+	echo 128 > /sys/block/dm-0/queue/read_ahead_kb
 
 # Adjust LMK Values
 	echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
