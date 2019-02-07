@@ -38,9 +38,9 @@ sleep 35;
 	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable
 
 # Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
-	echo "0:748800 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 500 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 25 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+	echo 15 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
 
 # Enable PEWQ
