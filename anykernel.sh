@@ -69,11 +69,6 @@ fi;
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
 
-# Set magisk policy
-ui_print "Setting up magisk policy for SELinux...";
-$bin/magiskpolicy --load sepolicy --save sepolicy "allow init rootfs file execute_no_trans";
-$bin/magiskpolicy --load sepolicy_debug --save sepolicy_debug "allow init rootfs file execute_no_trans";
-
 # end ramdisk changes
 
 write_boot;
