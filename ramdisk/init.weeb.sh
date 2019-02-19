@@ -46,9 +46,6 @@ sleep 35;
 # Enable PEWQ
 	echo Y > /sys/module/workqueue/parameters/power_efficient
 
-# Disable Touchboost
-	echo 0 > /sys/module/msm_performance/parameters/touchboost
-
 # Set default schedTune value for foreground/top-app
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
 # My reason for the top-app schedtune.boost being zero is that we do not really need any boosting when nothing significant is going on, for example, watching a youtube video, or the network indicator changing every second or so. For this reason, I have set it to 0, it does not seem to affect UX in my testing and should be just fine.
