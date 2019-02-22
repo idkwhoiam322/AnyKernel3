@@ -19,8 +19,8 @@ sleep 35;
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 
 # Set min cpu freq
-	echo 518400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
 # Set max cpu freq
 	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
@@ -40,7 +40,7 @@ sleep 35;
 # Input boost and stune configuration [We are using Sultan's CPU Input Boost now]
 	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 500 > /sys/module/cpu_boost/parameters/input_boost_ms
-	echo 50 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+	echo 15 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
 
 # Enable PEWQ
@@ -50,7 +50,7 @@ sleep 35;
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
 # My reason for the top-app schedtune.boost being zero is that we do not really need any boosting when nothing significant is going on, for example, watching a youtube video, or the network indicator changing every second or so. For this reason, I have set it to 0, it does not seem to affect UX in my testing and should be just fine.
 	echo 0 > /dev/stune/top-app/schedtune.boost
-	echo 50 > /dev/stune/top-app/schedtune.sched_boost
+	echo 15 > /dev/stune/top-app/schedtune.sched_boost
 	echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
 # Setup EAS cpusets values for better load balancing
