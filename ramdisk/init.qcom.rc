@@ -1,3 +1,8 @@
+on init
+	write /sys/block/sda/queue/scheduler noop
+	write /sys/block/sde/queue/scheduler noop
+	write /sys/block/sdf/queue/scheduler noop
+
 on property:sys.post_boot.parsed=1
     setprop vendor.post_boot.parsed 1
 
