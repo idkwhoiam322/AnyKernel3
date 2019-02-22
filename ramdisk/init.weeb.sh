@@ -18,14 +18,6 @@ sleep 35;
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 	chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 
-# Set min cpu freq
-	echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
-
-# Set max cpu freq
-	echo 1900800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	echo 2361600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-
 # Setup Schedutil Governor
 	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 	echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
