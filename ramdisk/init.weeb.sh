@@ -48,8 +48,7 @@ sleep 35;
 
 # Set default schedTune value for foreground/top-app
 	echo 1 > /dev/stune/foreground/schedtune.prefer_idle
-# My reason for the top-app schedtune.boost being zero is that we do not really need any boosting when nothing significant is going on, for example, watching a youtube video, or the network indicator changing every second or so. For this reason, I have set it to 0, it does not seem to affect UX in my testing and should be just fine.
-	echo 0 > /dev/stune/top-app/schedtune.boost
+	echo 1 > /dev/stune/top-app/schedtune.boost
 	echo 15 > /dev/stune/top-app/schedtune.sched_boost
 	echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
