@@ -39,7 +39,7 @@ sleep 35;
 
 # CAF CPU boost and stune configuration
 	echo 1 > /sys/module/cpu_boost/parameters/input_boost_enabled
-	echo "0:1036800 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+	echo "0:1171200 1:0 2:0 3:0 4:1056000 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 500 > /sys/module/cpu_boost/parameters/input_boost_ms
 	echo 50 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
 	echo 1500 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms

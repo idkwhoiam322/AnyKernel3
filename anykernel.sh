@@ -67,7 +67,7 @@ else
 fi;
 
 # In case the user wants to disable underclock, set underclock to 0 (zero). Enable = 1, Disable = 0.
-underclock=1;
+underclock=0;
 if [ "$underclock" != "1" ]; then
   patch_cmdline "" "cpufreq.disable_underclock=1";
 else
