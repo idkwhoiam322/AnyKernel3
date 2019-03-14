@@ -63,18 +63,6 @@ sleep 35;
 # For better screen off idle
 	echo 0-3 > /dev/cpuset/restricted/cpus
 
-# Adjust runtime fs to improve performance based on pixel settings. 2048 best for boot speed, 128 best for performance.
-	echo "cfq" > /sys/block/sda/queue/scheduler
-	echo 128 > /sys/block/sda/queue/read_ahead_kb
-	echo 128 > /sys/block/sda/queue/nr_requests
-	echo "cfq" > /sys/block/sde/queue/scheduler
-	echo 128 > /sys/block/sde/queue/read_ahead_kb
-	echo 128 > /sys/block/sde/queue/nr_requests
-	echo "cfq" > /sys/block/sdf/queue/scheduler
-	echo 128 > /sys/block/sdf/queue/read_ahead_kb
-	echo 128 > /sys/block/sdf/queue/nr_requests
-	echo 128 > /sys/block/dm-0/queue/read_ahead_kb
-
 # Adjust LMK Values
 	echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
 
