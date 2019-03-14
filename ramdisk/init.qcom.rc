@@ -1,14 +1,5 @@
-on init
-	write /sys/block/sda/queue/scheduler noop
-	write /sys/block/sde/queue/scheduler noop
-	write /sys/block/sdf/queue/scheduler noop
-
 on property:sys.post_boot.parsed=1
     setprop vendor.post_boot.parsed 1
 
 on property:vendor.post_boot.parsed=1
     exec u:r:magisk:s0 root root -- /init.weeb.sh
-
-on boot
-# bind custom system blobs
-	mount auto /perfboostsconfig.xml /vendor/etc/perf/perfboostsconfig.xml bind
