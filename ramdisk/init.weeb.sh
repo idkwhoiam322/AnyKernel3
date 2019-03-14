@@ -1,5 +1,8 @@
 #!/system/bin/sh
 
+# Work around issue where some user(s) have HBM enabled on boot for god knows why
+	echo 0 > /sys/devices/virtual/graphics/fb0/hbm
+
 sleep 35;
 
 
