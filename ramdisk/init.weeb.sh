@@ -64,7 +64,7 @@ sleep 35;
 	echo 0-3 > /dev/cpuset/restricted/cpus
 
 # Adjust LMK Values
-	echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
+	echo "18432,23040,27648,51256,150296,200640" > /sys/module/lowmemorykiller/parameters/minfree
 
 # Disable USB Fast Charge by default
 	echo 0 > /sys/kernel/fast_charge/force_fast_charge
