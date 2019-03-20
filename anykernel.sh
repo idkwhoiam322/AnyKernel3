@@ -66,14 +66,6 @@ else
   patch_cmdline "skip_override" "";
 fi;
 
-# In case the user wants to disable underclock, set underclock to 0 (zero). Enable = 1, Disable = 0.
-underclock=0;
-if [ "$underclock" != "1" ]; then
-  patch_cmdline "" "cpufreq.disable_underclock=1";
-else
-  patch_cmdline "cpufreq.disable_underclock=1" " ";  
-fi
-
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
 
