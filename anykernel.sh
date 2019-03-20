@@ -71,7 +71,7 @@ underclock=0;
 if [ "$underclock" != "1" ]; then
   patch_cmdline "" "cpufreq.disable_underclock=1";
 else
-  patch_cmdline "cpufreq.disable_underclock=1" "";  
+  patch_cmdline "cpufreq.disable_underclock=1" " ";  
 fi
 
 # Remove recovery service so that TWRP isn't overwritten
