@@ -61,5 +61,10 @@ sleep 35;
 # Disable USB Fast Charge by default
 	echo 0 > /sys/kernel/fast_charge/force_fast_charge
 
+# Configure ZRAM
+	echo 8 > /proc/sys/vm/swappiness
+	echo 5 > /proc/sys/vm/dirty_ratio
+	echo 2 > /proc/sys/vm/dirty_background_ratio
+
 # Disable perfd
 #	stop perf-hal-1-0
