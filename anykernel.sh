@@ -53,10 +53,17 @@ esac;
 ui_print " ";
 ui_print "You are on $os_string!";
 
+## begin vendor changes
+mount -o rw,remount -t auto /vendor >/dev/null;
+
+# Cleanup previous performance additions
+remove_section /vendor/etc/init/hw/init.target.performance.rc "##START_WEEB" "##END_WEE"
+
+# Add performance tweaks
+append_file /vendor/etc/init/hw/init.target.performance.rc "R4ND0MSTR1NG" init.target.performance.rc
+
 ## AnyKernel install
 dump_boot;
-
-# begin ramdisk changes
 
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
 if [ -d $ramdisk/.backup ]; then
