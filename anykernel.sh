@@ -57,7 +57,7 @@ ui_print "You are on $os_string!";
 mount -o rw,remount -t auto /vendor >/dev/null;
 
 # Cleanup previous performance additions
-remove_section /vendor/etc/init/hw/init.target.performance.rc "##START_WEEB" "##END_WEE"
+remove_section /vendor/etc/init/hw/init.target.performance.rc "##START_WEEB" "##END_WEEB"
 
 # Add performance tweaks
 append_file /vendor/etc/init/hw/init.target.performance.rc "R4ND0MSTR1NG" init.target.performance.rc
