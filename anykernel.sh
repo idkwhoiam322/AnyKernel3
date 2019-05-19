@@ -56,11 +56,12 @@ ui_print "You are on $os_string!";
 ## begin vendor changes
 mount -o rw,remount -t auto /vendor >/dev/null;
 
-# Cleanup previous performance additions
-remove_section /vendor/etc/init/hw/init.target.performance.rc "##START_WEEB" "##END_WEEB"
+# Make a backup of init.target.rc
+restore_file /vendor/etc/init/hw/init.target.rc;
+backup_file /vendor/etc/init/hw/init.target.rc;
 
 # Add performance tweaks
-append_file /vendor/etc/init/hw/init.target.performance.rc "R4ND0MSTR1NG" init.target.performance.rc
+append_file /vendor/etc/init/hw/init.target.rc "WeebKernelSettings" init.target.rc
 
 ## AnyKernel install
 dump_boot;
