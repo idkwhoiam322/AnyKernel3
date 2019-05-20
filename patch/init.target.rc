@@ -1,6 +1,11 @@
-	##START_WEEB
+##START_WEEB
 
-	# Tweak cpusets
+on property:sys.post_boot.parsed=1
+    setprop vendor.post_boot.parsed 1
+
+
+on property:vendor.post_boot.parsed=1
+# Tweak cpusets
 	write /dev/cpuset/audio-app/cpus 0-3
 	write /dev/cpuset/background/cpus 0-1
 	write /dev/cpuset/camera-daemon/cpus 0-7
@@ -10,4 +15,4 @@
 	write /dev/cpuset/system-background/cpus 0-3
 	write /dev/cpuset/top-app/cpus 0-7
 
-	##END_WEEB
+##END_WEEB
