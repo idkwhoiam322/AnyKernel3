@@ -5,6 +5,8 @@ on property:sys.post_boot.parsed=1
 
 
 on property:vendor.post_boot.parsed=1
+    start weeb
+
 # Tweak cpusets
 	write /dev/cpuset/audio-app/cpus 0-3
 	write /dev/cpuset/background/cpus 0-1
@@ -14,5 +16,11 @@ on property:vendor.post_boot.parsed=1
 	write /dev/cpuset/system/cpus 0-1,6-7
 	write /dev/cpuset/system-background/cpus 0-3
 	write /dev/cpuset/top-app/cpus 0-7
+
+service weeb /vendor/bin/sh /vendor/etc/init/hw/init.weeb.sh
+	class late_start
+	user root
+	disabled
+	oneshot
 
 ##END_WEEB
