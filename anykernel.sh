@@ -60,6 +60,13 @@ mount -o rw,remount -t auto /vendor >/dev/null;
 restore_file /vendor/etc/init/hw/init.target.rc;
 backup_file /vendor/etc/init/hw/init.target.rc;
 
+# Make a backup of vendor build.prop
+restore_file /vendor/build.prop;
+backup_file /vendor/build.prop;
+
+# Add performance tweaks
+append_file /vendor/build.prop "WeebKernelProps" build.prop
+
 ## AnyKernel install
 dump_boot;
 
