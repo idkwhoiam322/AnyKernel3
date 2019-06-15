@@ -56,15 +56,9 @@ ui_print "You are on $os_string!";
 ## begin vendor changes
 mount -o rw,remount -t auto /vendor >/dev/null;
 
-cp -rf /tmp/anykernel/patch/init.weeb.sh /vendor/etc/init/hw/;
-set_perm 0 0 0644 /vendor/etc/init/hw/init.weeb.sh;
-
 # Make a backup of init.target.rc
 restore_file /vendor/etc/init/hw/init.target.rc;
 backup_file /vendor/etc/init/hw/init.target.rc;
-
-# Add performance tweaks
-append_file /vendor/etc/init/hw/init.target.rc "WeebKernelSettings" init.target.rc
 
 ## AnyKernel install
 dump_boot;
