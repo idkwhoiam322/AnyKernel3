@@ -15,6 +15,7 @@ device.name3=OnePlus5
 device.name4=cheeseburger
 device.name5=
 supported.versions=9
+supported.patchlevels=
 '; } # end properties
 
 # shell variables
