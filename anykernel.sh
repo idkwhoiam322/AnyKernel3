@@ -28,6 +28,13 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
+# Save the users from themselves
+android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
+if [ "$android_version" != "9" ] && [ "$android_version" != "10" ]; then
+  ui_print " "; ui_print "You are on $android_version but this kernel is only for android 9 - Pie and android 10 - Q!";
+  exit 1;
+fi;
+
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 set_perm_recursive 0 0 755 644 $ramdisk/*;
