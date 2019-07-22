@@ -56,10 +56,6 @@ ui_print "You are on $os_string!";
 ## begin vendor changes
 mount -o rw,remount -t auto /vendor >/dev/null;
 
-# Make a backup of init.target.rc
-restore_file /vendor/etc/init/hw/init.target.rc;
-backup_file /vendor/etc/init/hw/init.target.rc;
-
 # Make a backup of vendor build.prop
 restore_file /vendor/build.prop;
 backup_file /vendor/build.prop;
