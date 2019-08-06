@@ -71,14 +71,6 @@ backup_file /vendor/etc/msm_irqbalance.conf;
 cp -rf /tmp/anykernel/patch/msm_irqbalance.conf /vendor/etc/msm_irqbalance.conf;
 set_perm 0 0 0644 /vendor/etc/msm_irqbalance.conf;
 
-# Make a backup of vendor msm_irqbalance binary
-restore_file /vendor/bin/msm_irqbalance;
-backup_file /vendor/bin/msm_irqbalance;
-
-# Replace original irq balancer with custom
-cp -rf /tmp/anykernel/patch/msm_irqbalance /vendor/bin/msm_irqbalance;
-set_perm 0 0 0755 /vendor/etc/msm_irqbalance.conf;
-
 ## AnyKernel install
 dump_boot;
 
