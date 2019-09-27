@@ -14,7 +14,7 @@ device.name2=dumpling
 device.name3=OnePlus5
 device.name4=cheeseburger
 device.name5=
-supported.versions=
+supported.versions=9.0 - 10
 supported.patchlevels=
 '; } # end properties
 
