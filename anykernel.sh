@@ -57,11 +57,18 @@ backup_file /vendor/build.prop;
 dump_boot;
 
 # Add skip_override parameter to cmdline so user doesn't have to reflash Magisk
-if [ -d $ramdisk/.backup ]; then
-  ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
-  patch_cmdline "skip_override" "skip_override";
+# Get Android version
+android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
+# Do not do this for Android 10 ( A only SAR )
+if [ "$android_version" != "10" ]; then
+  if [ -d $ramdisk/.backup ]; then
+    ui_print " "; ui_print "Magisk detected! Patching cmdline so reflashing Magisk is not necessary...";
+    patch_cmdline "skip_override" "skip_override";
+  else
+    patch_cmdline "skip_override" "";
+  fi;
 else
-  patch_cmdline "skip_override" "";
+   ui_print " "; ui_print "You are on android 10! Not performing Magisk preservation. Please reflash Magisk if you want to keep it.";
 fi;
 
 # Remove recovery service so that TWRP isn't overwritten
