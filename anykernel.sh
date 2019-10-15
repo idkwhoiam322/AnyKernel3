@@ -49,6 +49,16 @@ ui_print "You are on $os_string!";
 ## AnyKernel install
 dump_boot;
 
+# Get Android version
+android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
+
+# Warn user to reflash magisk on android 10
+if [ "$android_version" != "9" ]; then
+  if [ -d $ramdisk/.backup ]; then
+    ui_print " "; ui_print "PLEASE REFLASH MAGISK TO PRESERVE IT";
+  fi;
+fi;
+
 # Remove recovery service so that TWRP isn't overwritten
 remove_section init.rc "service flash_recovery" ""
 
