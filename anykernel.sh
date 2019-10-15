@@ -46,13 +46,6 @@ esac;
 ui_print " ";
 ui_print "You are on $os_string!";
 
-## begin vendor changes
-mount -o rw,remount -t auto /vendor >/dev/null;
-
-# Make a backup of vendor build.prop
-restore_file /vendor/build.prop;
-backup_file /vendor/build.prop;
-
 ## AnyKernel install
 dump_boot;
 
