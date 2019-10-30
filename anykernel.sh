@@ -49,6 +49,8 @@ ui_print "You are on $os_string!";
 ## AnyKernel install
 dump_boot;
 
+# begin ramdisk changes
+
 # Get Android version
 android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
 
